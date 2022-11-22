@@ -1,0 +1,30 @@
+@charset "utf-8";
+.footer-clima {
+  display: inline-block;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.footer-clima img {
+  width: 40px;
+}
+
+.description {
+  margin-left: 20px;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #2b4fa1;
+}
+
+d.ciudad strong {
+  margin-left: 10px;
+  color: #000;
+}
+
+d.temperatura strong {
+  margin-left: 10px;
+  color: #000;
+}
