@@ -82,48 +82,23 @@ class Geotiempo extends Module
         ) {
             return false;
         }
+        
         if (!Configuration::updateValue(
-            'WEATHER_VP',
-            '3'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_COLOR2',
+            'WEATHER_LOCATION2',
             'Bogota'
         )
         ) {
             return false;
         }
-        if (!Configuration::updateValue(
-            'WEATHER_PAG',
-            'true'
-        )
-        ) {
-            return false;
-        }
+        
         if (!Configuration::updateValue(
             'WEATHER_UNITS',
-            'metric'
+            '°C'
         )
         ) {
             return false;
         }
-        if (!Configuration::updateValue(
-            'WEATHER_LOOP',
-            'true'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_STOP',
-            'true'
-        )
-        ) {
-            return false;
-        }
+    
         if (!Configuration::updateValue(
             'WEATHER_WIDTH',
             'auto'
@@ -141,15 +116,7 @@ class Geotiempo extends Module
         if (!Configuration::updateValue(
             'WEATHER_ALIGN',
             '75531ffd230550d695d0046d4c03e120'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_NUMBER',
-            '5'
-        )
-        ) {
+        )){
             return false;
         }
         if (!Configuration::updateValue(
@@ -168,44 +135,8 @@ class Geotiempo extends Module
             return false;
         }
         if (!Configuration::updateValue(
-            'WEATHER_BG',
-            (_PS_VERSION_ < '1.6.0.0' ? '' : '#').'cccccc'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_BORDER',
-            ''
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_BG2',
-            (_PS_VERSION_ < '1.6.0.0' ? '' : '#').'ffffff'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
-            'WEATHER_LC',
-            '3000'
-        )
-        ) {
-            return false;
-        }
-        if (!Configuration::updateValue(
             'WEATHER_SORT',
             0
-        )
-        ) {
-            return false;
-        }
-
-        if (!Configuration::updateValue(
-            'WEATHER_IDLANG',
-            1
         )
         ) {
             return false;
@@ -378,7 +309,8 @@ class Geotiempo extends Module
 
 
     public function hookDisplayFooter($ipaddress)
-    {
+    {   
+        
         
         $ip = Tools::getRemoteAddr();
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -410,7 +342,7 @@ class Geotiempo extends Module
                 return false;
             }
         } else {
-            $url = "http://api.openweathermap.org/data/2.5/weather?q=".Configuration::get('WEATHER_COLOR2')."&appid=".Configuration::get('WEATHER_ALIGN')."&units=".Configuration::get('WEATHER_UNITS')."&lang=".$lang."";
+            $url = "http://api.openweathermap.org/data/2.5/weather?q=".Configuration::get('WEATHER_LOCATION2')."&appid=".Configuration::get('WEATHER_ALIGN')."&units=".Configuration::get('WEATHER_UNITS')."&lang=".$lang."";
             if (@Tools::file_get_contents($url)) {
                 $djson = Tools::file_get_contents($url);
                 $clima = json_decode($djson);
@@ -425,11 +357,6 @@ class Geotiempo extends Module
             }
         }
 
-        $nb = (int)(Configuration::get('WEATHER_NBR'));
-        
-        $currency = Currency::getCurrency($this->context->currency->id);
-        $number = Configuration::get('WEATHER_NUMBER');
-        $number = Configuration::get('WEATHER_NUMBER');
         $width = Configuration::get('WEATHER_WIDTH');
         $height = Configuration::get('WEATHER_HEIGHT');
         if ($width != "auto") {
@@ -442,24 +369,13 @@ class Geotiempo extends Module
         } else {
             $height2 = $height;
         }
-        $align = Configuration::get('WEATHER_ALIGN');
-        $desc = Configuration::get('WEATHER_DESC');
+        
         $type = Configuration::get('WEATHER_TYPE');
 
         $style = Configuration::get('WEATHER_STYLE');
         $color = Configuration::get('WEATHER_COLOR');
         $sort = Configuration::get('WEATHER_SORT');
 
-        $color2 = Configuration::get('WEATHER_COLOR2');
-        $speed = Configuration::get('WEATHER_NUMBER');
-        $lc = Configuration::get('WEATHER_LC');
-        $bg = Configuration::get('WEATHER_BG');
-
-        $id_customer = (isset($this->context->customer->id) && $this->context->customer->id) ? (int)($this->context->customer->id) : 0;
-        $id_group = $id_customer ? (int)(Customer::getDefaultGroupId($id_customer)) : 1;
-        $id_country = (int)($id_customer ? Customer::getCurrentCountry($id_customer) : Configuration::get(
-            'PS_COUNTRY_DEFAULT'
-        ));
         $this->context->controller->addCSS(
             ($this->_path).'views/css/front.css',
             'all'

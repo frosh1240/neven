@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.43, created on 2022-11-21 16:31:21
+/* Smarty version 3.1.43, created on 2022-11-22 10:39:28
   from 'C:\xampp\htdocs\neven\modules\geotiempo\views\templates\hook\tiempo.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.43',
-  'unifunc' => 'content_637bee298fb3b7_14609140',
+  'unifunc' => 'content_637ced307ee0b9_50906771',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_637bee298fb3b7_14609140 (Smarty_Internal_Template $_smarty_tpl) {
+function content_637ced307ee0b9_50906771 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="panel">
 	<!-- Traducciones <h3><?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['l'][0], array( array('s'=>"Hello World",'mod'=>"tiempo"),$_smarty_tpl ) );?>
